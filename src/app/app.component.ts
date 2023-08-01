@@ -3,8 +3,7 @@ import {
   CdkDragEnter,
   CdkDropList,
   DragRef,
-  moveItemInArray,
-  transferArrayItem,
+  moveItemInArray
 } from '@angular/cdk/drag-drop';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 
@@ -19,7 +18,7 @@ interface Item {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements AfterViewInit {
-  @ViewChild(CdkDropList) placeholder: CdkDropList  | null = null;
+  @ViewChild(CdkDropList) placeholder: CdkDropList | null = null;
 
   private target: CdkDropList | null = null;
   private targetIndex: number = -1;
@@ -29,17 +28,17 @@ export class AppComponent implements AfterViewInit {
   private parentContainerElement: HTMLElement | null = null;
   private sameParent: boolean = false;
 
-  items1: Array<Item> = [{id: 1, name: "1"}, {id: 2, name: "2"}, {id: 3, name: "3"}, {id: 4, name: "4"}, {id: 5, name: "5"}, {id: 6, name: "6"}, {id: 7, name: "7"}, {id: 8, name: "8"}, {id: 9, name: "9"}]
-  items2: Array<Item> = [{id: 11, name: "11"}, {id: 12, name: "12"}, {id: 13, name: "13"}, {id: 14, name: "14"}, {id: 15, name: "15"}, {id: 16, name: "16"}, {id: 17, name: "17"}, {id: 18, name: "18"}, {id: 19, name: "19"}]
-  items3: Array<Item> = [{id: 21, name: "21"}, {id: 22, name: "22"}, {id: 23, name: "23"}, {id: 24, name: "24"}, {id: 25, name: "25"}, {id: 26, name: "26"}, {id: 27, name: "27"}, {id: 28, name: "28"}, {id: 29, name: "29"}]
+  items1: Array<Item> = [{ id: 1, name: "1" }, { id: 2, name: "2" }, { id: 3, name: "3" }, { id: 4, name: "4" }, { id: 5, name: "5" }, { id: 6, name: "6" }, { id: 7, name: "7" }, { id: 8, name: "8" }, { id: 9, name: "9" }]
+  items2: Array<Item> = [{ id: 11, name: "11" }, { id: 12, name: "12" }, { id: 13, name: "13" }, { id: 14, name: "14" }, { id: 15, name: "15" }, { id: 16, name: "16" }, { id: 17, name: "17" }, { id: 18, name: "18" }, { id: 19, name: "19" }]
+  items3: Array<Item> = [{ id: 21, name: "21" }, { id: 22, name: "22" }, { id: 23, name: "23" }, { id: 24, name: "24" }, { id: 25, name: "25" }, { id: 26, name: "26" }, { id: 27, name: "27" }, { id: 28, name: "28" }, { id: 29, name: "29" }]
   currentItem: Item | null = null;
-  itemsDictionary: { [id: string] : Item[]; } = {};
+  itemsDictionary: { [id: string]: Item[]; } = {};
 
   boxWidth = '150px';
   boxHeight = '60px';
 
   ngAfterViewInit() {
-    if(this.placeholder == null) return;
+    if (this.placeholder == null) return;
     const placeholderElement = this.placeholder!.element.nativeElement;
 
     placeholderElement.style.display = 'none';
@@ -70,9 +69,6 @@ export class AppComponent implements AfterViewInit {
       toItemsArray.splice(this.targetIndex, 0, this.currentItem!);
     }
 
-
-    
-
     placeholderElement.style.display = 'none';
 
     placeholderParentElement.removeChild(placeholderElement);
@@ -83,9 +79,8 @@ export class AppComponent implements AfterViewInit {
         this.source!.element.nativeElement,
         placeholderParentElement.children[this.sourceIndex]
       );
-    } 
-    else 
-    {
+    }
+    else {
       placeholderParentElement.insertBefore(
         this.source!.element.nativeElement,
         placeholderParentElement.children[this.targetIndex]
@@ -111,7 +106,7 @@ export class AppComponent implements AfterViewInit {
     const sourceElement: HTMLElement = item.dropContainer.element.nativeElement;
     const dropParentElement: HTMLElement = container.element.nativeElement.parentElement!;
     this.sameParent = this.parentContainerElement == dropParentElement;
-    
+
     const placeholderElement: HTMLElement = this.placeholder!.element.nativeElement;
     const dropElement: HTMLElement = container.element.nativeElement;
     const dragIndex: number = Array.prototype.indexOf.call(
