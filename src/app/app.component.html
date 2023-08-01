@@ -1,37 +1,62 @@
 <h1>Drag&Drop with a flex-wrap</h1>
 
 <div cdkDropListGroup>
-  <h2>container 1</h2>
-  <div class="resource-container" [ngStyle]="{ '--box-width': boxWidth, '--box-height': boxHeight }" id="project_1">
-    <div cdkDropList (cdkDropListEntered)="onDropListEntered($event)" (cdkDropListDropped)="onDropListDropped($event)"
-      id="project_1_item_0">
+    <h2>container 1</h2>
+    <div class="resource-container" [ngStyle]="{ '--box-width': boxWidth, '--box-height': boxHeight }" id="project_1">
+        <div    cdkDropList 
+                (cdkDropListEntered)="onDropListEntered($event)"
+                (cdkDropListDropped)="onDropListDropped($event)" 
+                id="project_1_item_0">
+        </div>
+        <div    cdkDropList 
+                (cdkDropListEntered)="onDropListEntered($event)"
+                (cdkDropListDropped)="onDropListDropped($event)" 
+                *ngFor="let item of items1; let n = index"
+                id="project_1_item_{{n}}">
+            <div    cdkDrag 
+                    class="resource-box" 
+                    (cdkDragStarted)="onDragStarted($event, item)" 
+                    id="resource_{{item.id}}">
+                {{ item.name }}
+            </div>
+        </div>
     </div>
-    <div cdkDropList (cdkDropListEntered)="onDropListEntered($event)" (cdkDropListDropped)="onDropListDropped($event)"
-      *ngFor="let item of items1; let n = index" id="project_1_item_{{n}}">
-      <div cdkDrag class="resource-box" (cdkDragStarted)="onDragStarted($event, item)" id="resource_{{item.id}}">{{
-        item.name }}</div>
+    <h2>container 2</h2>
+    <div class="resource-container" [ngStyle]="{ '--box-width': boxWidth, '--box-height': boxHeight }" id="project_2">
+        <div    cdkDropList 
+                (cdkDropListEntered)="onDropListEntered($event)"
+                (cdkDropListDropped)="onDropListDropped($event)" 
+                id="project_2_item_0">
+        </div>
+        <div    cdkDropList 
+                (cdkDropListEntered)="onDropListEntered($event)"
+                (cdkDropListDropped)="onDropListDropped($event)" 
+                *ngFor="let item of items2; let n = index"
+                id="project_2_item_{{n}}">
+            <div    cdkDrag 
+                    class="resource-box" 
+                    (cdkDragStarted)="onDragStarted($event, item)" 
+                    id="resource_{{item.id}}">
+                {{ item.name }}</div>
+        </div>
     </div>
-  </div>
-  <h2>container 2</h2>
-  <div class="resource-container" [ngStyle]="{ '--box-width': boxWidth, '--box-height': boxHeight }" id="project_2">
-    <div cdkDropList (cdkDropListEntered)="onDropListEntered($event)" (cdkDropListDropped)="onDropListDropped($event)"
-      id="project_2_item_0">
+    <h2>container 3</h2>
+    <div class="resource-container" [ngStyle]="{ '--box-width': boxWidth, '--box-height': boxHeight }" id="project_3">
+        <div    cdkDropList 
+                (cdkDropListEntered)="onDropListEntered($event)"
+                (cdkDropListDropped)="onDropListDropped($event)" 
+                id="project_3_item_0">
+        </div>
+        <div    cdkDropList 
+                (cdkDropListEntered)="onDropListEntered($event)"
+                (cdkDropListDropped)="onDropListDropped($event)" 
+                *ngFor="let item of items3; let n = index"
+                id="project_3_item_{{n}}">
+            <div    cdkDrag 
+                    class="resource-box" 
+                    (cdkDragStarted)="onDragStarted($event, item)" 
+                    id="resource_{{item.id}}">
+                {{ item.name }}</div>
+        </div>
     </div>
-    <div cdkDropList (cdkDropListEntered)="onDropListEntered($event)" (cdkDropListDropped)="onDropListDropped($event)"
-      *ngFor="let item of items2; let n = index" id="project_2_item_{{n}}">
-      <div cdkDrag class="resource-box" (cdkDragStarted)="onDragStarted($event, item)" id="resource_{{item.id}}">{{
-        item.name }}</div>
-    </div>
-  </div>
-  <h2>container 3</h2>
-  <div class="resource-container" [ngStyle]="{ '--box-width': boxWidth, '--box-height': boxHeight }" id="project_3">
-    <div cdkDropList (cdkDropListEntered)="onDropListEntered($event)" (cdkDropListDropped)="onDropListDropped($event)"
-      id="project_3_item_0">
-    </div>
-    <div cdkDropList (cdkDropListEntered)="onDropListEntered($event)" (cdkDropListDropped)="onDropListDropped($event)"
-      *ngFor="let item of items3; let n = index" id="project_3_item_{{n}}">
-      <div cdkDrag class="resource-box" (cdkDragStarted)="onDragStarted($event, item)" id="resource_{{item.id}}">{{
-        item.name }}</div>
-    </div>
-  </div>
 </div>

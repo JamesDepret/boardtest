@@ -44,6 +44,7 @@ export class AppComponent implements AfterViewInit {
     placeholderElement.style.display = 'none';
     placeholderElement.parentNode!.removeChild(placeholderElement);
 
+    // I'm using a dictionary here to later on be able to loop through "n" number of projects and dynamically link them to their resources
     this.itemsDictionary["project_1"] = this.items1;
     this.itemsDictionary["project_2"] = this.items2;
     this.itemsDictionary["project_3"] = this.items3;
@@ -97,6 +98,9 @@ export class AppComponent implements AfterViewInit {
 
     if (this.sameParent == false) return;
     if (this.sourceIndex !== this.targetIndex) {
+      // this doesn't seem to order the items properly in container 2 & 3
+      // the first source of the problem is the drop and dragindex from the onDropListEntered method
+      // but it also seems to bug on other occasions...
       moveItemInArray(fromItemsArray, this.sourceIndex, this.targetIndex);
     }
   }
@@ -108,6 +112,9 @@ export class AppComponent implements AfterViewInit {
     this.sameParent = this.parentContainerElement == dropParentElement;
 
     const placeholderElement: HTMLElement = this.placeholder!.element.nativeElement;
+
+    // In container 2 & 3 this seems to be getting the index + 1,
+    // We need to find out why it's doing this
     const dropElement: HTMLElement = container.element.nativeElement;
     const dragIndex: number = Array.prototype.indexOf.call(
       dropElement.parentElement!.children,
